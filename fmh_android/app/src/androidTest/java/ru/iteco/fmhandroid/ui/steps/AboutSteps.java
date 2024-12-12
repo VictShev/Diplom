@@ -3,11 +3,9 @@ package ru.iteco.fmhandroid.ui.steps;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static ru.iteco.fmhandroid.ui.activity.DataHelper.elementWaiting;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.page.AboutPage;
 
 public class AboutSteps {
@@ -16,7 +14,7 @@ public class AboutSteps {
 
     public void checkThatAboutBlockContentIsFull() {
         Allure.step("Проверка, что блок \"О приложении\" содержит полный контент");
-        elementWaiting(withId(R.id.about_company_info_label_text_view), 5000);
+        elementWaiting(aboutPage.infoCompanyMatcher, 5000);
         aboutPage.logo.check(matches(isDisplayed()));
         aboutPage.backButton.check(matches(isDisplayed()));
         aboutPage.versionTitleField.check(matches(isDisplayed()));

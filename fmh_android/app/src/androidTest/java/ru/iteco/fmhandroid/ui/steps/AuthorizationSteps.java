@@ -7,7 +7,6 @@ import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
 import static ru.iteco.fmhandroid.ui.activity.DataHelper.elementWaiting;
@@ -15,7 +14,6 @@ import static ru.iteco.fmhandroid.ui.activity.DataHelper.elementWaiting;
 import android.view.View;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.activity.DataHelper;
 import ru.iteco.fmhandroid.ui.page.AuthorizationPage;
 
@@ -25,7 +23,7 @@ public class AuthorizationSteps {
 
     public void loadAuthorizationPage() {
         Allure.step("Загрузка страницы авторизации");
-        elementWaiting(withId(R.id.enter_button), 5000);
+        elementWaiting(authorizationPage.loginButtonMatcher, 5000);
     }
 
     public void checkThatAuthorizationBlockContentIsFull() {

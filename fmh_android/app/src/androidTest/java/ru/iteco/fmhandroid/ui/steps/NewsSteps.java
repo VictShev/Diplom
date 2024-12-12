@@ -1,16 +1,12 @@
 package ru.iteco.fmhandroid.ui.steps;
 
-import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static ru.iteco.fmhandroid.ui.activity.DataHelper.elementWaiting;
-import static ru.iteco.fmhandroid.ui.activity.DataHelper.withIndex;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.activity.DataHelper;
 import ru.iteco.fmhandroid.ui.page.MainPage;
 import ru.iteco.fmhandroid.ui.page.NewsMainPage;
@@ -21,7 +17,7 @@ public class NewsSteps {
 
     public void newsListLoad() {
         Allure.step("Загрузка списка новостей");
-        elementWaiting(withId(R.id.news_list_recycler_view), 5000);
+        elementWaiting(newsMainPage.recyclerMatcher, 5000);
     }
 
     public void checkThatNewsBlockContentIsFull() {
@@ -57,11 +53,11 @@ public class NewsSteps {
 
     public String getFirstNewsTitle(int index) {
         Allure.step("Заголовок первой новости");
-        return DataHelper.Text.getText(onView(withIndex(withId(R.id.news_item_title_text_view), index)));
+        return DataHelper.Text.getText(newsMainPage.getNewsItemTitle(index));
     }
 
     public String getCreateNewsDescription(int index) {
         Allure.step("Описание созданной новости");
-        return DataHelper.Text.getText(onView(withIndex(withId(R.id.news_item_description_text_view), index)));
+        return DataHelper.Text.getText(newsMainPage.getNewsItemDescription(index));
     }
 }

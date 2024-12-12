@@ -11,7 +11,11 @@ import static org.hamcrest.Matchers.is;
 import static ru.iteco.fmhandroid.ui.activity.DataHelper.childAtPosition;
 import static ru.iteco.fmhandroid.ui.activity.DataHelper.withIndex;
 
+import android.view.View;
+
 import androidx.test.espresso.ViewInteraction;
+
+import org.hamcrest.Matcher;
 
 import ru.iteco.fmhandroid.R;
 
@@ -36,6 +40,7 @@ public class ControlPanelPage {
     public ViewInteraction author;
     public ViewInteraction statusActive;
     public ViewInteraction statusNotActive;
+    public Matcher<View> addNewsImageMatcher;
 
     public ControlPanelPage() {
 
@@ -57,6 +62,7 @@ public class ControlPanelPage {
                 onView(withIndex(withId(R.id.news_item_published_text_view), 0));
         statusNotActive =
                 onView(withIndex(withId(R.id.news_item_published_text_view), 0));
+        addNewsImageMatcher = withId(R.id.add_news_image_view);
     }
 
 

@@ -6,13 +6,11 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.doesNotExist;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static ru.iteco.fmhandroid.ui.activity.DataHelper.elementWaiting;
 
 import io.qameta.allure.kotlin.Allure;
-import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.page.ControlPanelPage;
 import ru.iteco.fmhandroid.ui.page.NewsMainPage;
 
@@ -22,16 +20,15 @@ public class ControlPanelSteps {
     NewsMainPage newsMainPage = new NewsMainPage();
     CreateNewsSteps createNewsSteps = new CreateNewsSteps();
 
-
     public void openControlPanelPage() {
         Allure.step("Переход в панель управления со страницы Новостей");
         newsMainPage.controlPanelButton.perform(click());
-        elementWaiting(withId(R.id.add_news_image_view), 5000);
+        elementWaiting(newsMainPage.addNewsImageMatcher, 5000);
     }
 
     public void checkThatControlPanelContentIsFull() {
         Allure.step("Проверка панели управления на полный контент");
-        elementWaiting(withId(R.id.add_news_image_view), 5000);
+        elementWaiting(controlPanelPage.addNewsImageMatcher, 5000);
         controlPanelPage.logo.check(matches(isDisplayed()));
         controlPanelPage.sortButton.check(matches(isDisplayed()));
         controlPanelPage.filterButton.check(matches(isDisplayed()));
